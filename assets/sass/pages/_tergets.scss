@@ -1,0 +1,113 @@
+// Targets Page Specific Styles
+.target-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 10px;
+
+    @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.target-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 28px;
+
+        &.monthly-icon {
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        &.daily-icon {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+    }
+
+    h3 {
+        font-size: 20px;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 25px;
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        input {
+            width: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+
+            &:focus {
+                border-color: #ffaa00;
+            }
+        }
+
+        span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #64748b;
+        }
+    }
+}
+
+.save-action-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.btn-save-targets {
+    padding: 16px 40px;
+    background: #0f172a;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+
+    &:hover {
+        background: #1e293b;
+    }
+}

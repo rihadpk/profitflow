@@ -1,0 +1,88 @@
+// Variables (মাস্টার থিমের সাথে সামঞ্জস্যপূর্ণ)
+$primary-color: #ffaa00;
+$slate-dark: #0f172a;
+$border-color: #e2e8f0;
+$white-pure: #ffffff;
+$text-muted: #64748b;
+
+// Date Filter Container Layout
+.filter-card {
+    background: $white-pure;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid $border-color;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    margin-bottom: 5px;
+
+    .filter-flex-container {
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: $text-muted;
+        }
+
+        input[type="date"] {
+            padding: 11px 16px;
+            border: 1px solid $border-color;
+            border-radius: 10px;
+            font-size: 14px;
+            color: $slate-dark;
+            outline: none;
+            background-color: #f8fafc;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+                border-color: $primary-color;
+                background-color: $white-pure;
+            }
+        }
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-filter-action {
+        padding: 12px 24px;
+        background: $slate-dark;
+        color: $white-pure;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        &.btn-reset {
+            background: #64748b;
+        }
+    }
+}
+
+// Table helper upgrades
+.qty-badge {
+    background: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: $slate-dark;
+}

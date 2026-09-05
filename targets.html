@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Pro - Set Targets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>ProfitFlow</span>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="add-sales.html" class="nav-link" id="addSaleBtn"><i class="fa-solid fa-cart-plus"></i> Add
+                        Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sales-list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Sales List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Expenses</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="targets.html" class="nav-link"><i class="fa-solid fa-bullseye"></i> Targets</a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+            </ul>
+            <div class="sidebar-date">
+                <div class="date-box">
+                    <h4 id="displayDate">13 Jun 2026</h4>
+                    <p id="displayDay">Saturday, 05:53 PM</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Target Management</h1>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <img id="headerUserImg"
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop"
+                            alt="User">
+                        <span id="userNameDisplay">rihad</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="target-settings-grid">
+
+                <!-- Monthly Target -->
+                <div class="target-card">
+                    <div class="card-icon monthly-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <h3>Monthly Sales Target</h3>
+                    <p>Set how many products you want to sell this month.</p>
+
+                    <div class="input-container">
+                        <input type="number" id="monthlyTargetInput">
+                        <span>Products</span>
+                    </div>
+                </div>
+
+                <!-- Working Days -->
+                <div class="target-card">
+                    <div class="card-icon daily-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+
+                    <h3>Working Days</h3>
+                    <p>How many days do you want to complete your target?</p>
+
+                    <div class="input-container">
+                        <input type="number" id="workingDaysInput" min="1" max="31" placeholder="Working Days">
+                        <span>Days</span>
+                    </div>
+                </div>
+
+                <!-- Daily Target -->
+                <div class="target-card">
+                    <div class="card-icon daily-icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+
+                    <h3>Daily Sales Target</h3>
+                    <p>Automatically calculated from your monthly target.</p>
+
+                    <div class="input-container">
+                        <input type="number" id="dailyTargetInput" readonly>
+                        <span>Products</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="save-action-container">
+                <button id="saveTargetsBtn" class="btn-save-targets">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Update All Targets
+                </button>
+            </div>
+            <footer class="site-footer">
+                <p>&copy; 2026 Designed & Developed by <strong>Rihad</strong></p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

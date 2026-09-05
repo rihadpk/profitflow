@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Monthly Business Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>ProfitFlow</span>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="add-sales.html" class="nav-link"><i class="fa-solid fa-cart-plus"></i> Add Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sales-list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Sales List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Expenses</a>
+                </li>
+                <li class="nav-item">
+                    <a href="targets.html" class="nav-link"><i class="fa-solid fa-bullseye"></i> Targets</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+            </ul>
+            <div class="sidebar-date">
+                <div class="date-box">
+                    <h4 id="displayDate">13 Jun 2026</h4>
+                    <p id="displayDay">Saturday, 05:53 PM</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Reports</h1>
+                    <p class="sub-title">Monthly Business Report</p>
+                </div>
+                <div class="header-right">
+                    <div class="date-filter-box">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="month" id="monthFilter">
+                    </div>
+                    <button class="btn-action btn-pdf" onclick="alert('Downloading PDF...')"><i
+                            class="fa-solid fa-download"></i> Download PDF</button>
+                    <button class="btn-action btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i>
+                        Print Report</button>
+                </div>
+            </header>
+
+            <section class="stats-grid-reports">
+                <div class="report-card">
+                    <h4>Total Revenue</h4>
+                    <h2>৳ <span id="repRevenue">0</span></h2>
+                    <p>From <span id="repOrdersCount">0</span> Orders</p>
+                </div>
+                <div class="report-card">
+                    <h4>Total Cost</h4>
+                    <h2>৳ <span id="repCost">0</span></h2>
+                    <p>Product Cost</p>
+                </div>
+                <div class="report-card">
+                    <h4>Total Delivery Charge</h4>
+                    <h2>৳ <span id="repDelivery">0</span></h2>
+                    <p>Delivery Cost</p>
+                </div>
+                <div class="report-card profit">
+                    <h4>Total Profit</h4>
+                    <h2>৳ <span id="repProfit">0</span></h2>
+                    <p>Revenue - Cost - Delivery</p>
+                </div>
+            </section>
+
+            <div class="reports-middle-grid">
+                <div class="report-box">
+                    <h3>Monthly Target Report</h3>
+                    <div class="target-content">
+                        <div class="circular-progress-container">
+                            <div class="circular-progress" id="targetCircle">
+                                <div class="progress-value">
+                                    <span id="targetSuccessRate">0%</span>
+                                    <p>Success Rate</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="target-legend">
+                            <div class="legend-item"><span class="dot orange"></span> Monthly Target <strong
+                                    id="targetGoal">300</strong></div>
+                            <div class="legend-item"><span class="dot green"></span> Sold <strong
+                                    id="targetSold">0</strong></div>
+                            <div class="legend-item"><span class="dot blue"></span> Remaining <strong
+                                    id="targetRemaining">300</strong></div>
+                        </div>
+                    </div>
+                    <div class="target-footer-note">
+                        <i class="fa-solid fa-circle-info"></i> Target is based on calendar month. Monthly target will
+                        reset on 1st of next month.
+                    </div>
+                </div>
+
+                <div class="report-box">
+                    <h3>Top Products</h3>
+                    <div class="table-responsive">
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product</th>
+                                    <th>Sold (Qty)</th>
+                                    <th>Profit (৳)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topProductsTable">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn-report-view-all" onclick="window.location.href='sales-list.html'">View All
+                        Products
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <section class="sales-summary-section">
+                <h3>Sales Summary</h3>
+                <div class="stats-grid-reports mini">
+                    <div class="report-card mini">
+                        <h4>Total Orders</h4>
+                        <h2><span id="sumOrders">0</span></h2>
+                    </div>
+                    <div class="report-card mini">
+                        <h4>Total Quantity Sold</h4>
+                        <h2><span id="sumQty">0</span></h2>
+                    </div>
+                    <div class="report-card mini">
+                        <h4>Average Profit Per Order</h4>
+                        <h2>৳ <span id="sumAvgProfit">0</span></h2>
+                    </div>
+                </div>
+            </section>
+
+            <div class="report-footer-banner">
+                <div>
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span><strong>Report Generated:</strong> <span id="reportGenDate">-- -- ----</span></span>
+                </div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Report Illustration">
+            </div>
+
+            <footer class="site-footer">
+                <p>&copy; 2026 Designed & Developed by <strong>Rihad</strong></p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

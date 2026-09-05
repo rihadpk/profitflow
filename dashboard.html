@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Pro Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>ProfitFlow</span>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="add-sales.html" class="nav-link" id="addSaleBtn"><i class="fa-solid fa-cart-plus"></i> Add
+                        Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sales-list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Sales List</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Expenses</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="targets.html" class="nav-link"><i class="fa-solid fa-bullseye"></i> Targets</a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+            </ul>
+            <div class="sidebar-date">
+                <div class="date-box">
+                    <h4 id="displayDate">13 Jun 2026</h4>
+                    <p id="displayDay">Saturday, 05:53 PM</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <button id="sidebarToggleBtn" class="mobile-menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <h1>Dashboard</h1>
+
+                <div class="header-right">
+
+                    <!-- Dashboard Month -->
+                    <div class="dashboard-month-filter">
+                        <label for="dashboardMonth">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </label>
+
+                        <input type="month" id="dashboardMonth">
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="user-profile dropdown-trigger">
+                        <div class="profile-btn">
+                            <img id="headerUserImg"
+                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&auto=format&fit=crop"
+                                alt="User">
+                            <span id="userNameDisplay">rihad</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </div>
+
+                        <div class="profile-dropdown-menu">
+                            <button id="btnLogout" class="dropdown-item">
+                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-bullseye icon-monthly"></i>
+                        <h4>Monthly Target</h4>
+                    </div>
+                    <h2><span id="monthlyTargetVal">300</span> <small>Products</small></h2>
+                    <p>Set for <span id="targetMonthYear">Loading...</span></p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-cart-shopping icon-sold"></i>
+                        <h4>Sold This Month</h4>
+                    </div>
+                    <h2><span id="soldThisMonthVal">0</span> <small>Products</small></h2>
+                    <span class="badge badge-warning" id="monthBadge">0% Completed</span>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-hourglass-half icon-remaining"></i>
+                        <h4>Remaining Target</h4>
+                    </div>
+                    <h2><span id="remTargetVal">300</span> <small>Products</small></h2>
+                    <span class="badge badge-info" id="remBadge">100% Remaining</span>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa-solid fa-bangladeshi-taka-sign icon-profit"></i>
+                        <h4>Total Profit</h4>
+                    </div>
+                    <h2>৳ <span id="totalProfitValTop">0</span></h2>
+                    <p>After delivery costs</p>
+                </div>
+            </section>
+
+            <section class="progress-row">
+                <div class="progress-card">
+                    <h3>Today's Progress</h3>
+                    <div class="today-progress-flex">
+                        <div class="circle-container">
+                            <svg width="100" height="100">
+                                <circle cx="50" cy="50" r="45" class="circle-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="circle-fill" id="todayCircle"></circle>
+                            </svg>
+                            <div class="circle-text" id="todayPercentText">0%</div>
+                        </div>
+                        <div class="today-stats">
+                            <div class="today-stats-item">
+                                <p>Today's Target</p>
+                                <h4><span id="dailyTargetVal">10</span> <small>Products</small></h4>
+                            </div>
+                            <div class="today-stats-item">
+                                <p>Sold Today</p>
+                                <h4 id="soldTodayVal">0 <small>Products</small></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-footer">
+                        <div class="p-foot-item">
+                            <p>Remaining Today</p>
+                            <h4 id="remTodayVal">10</h4>
+                        </div>
+                        <div class="p-foot-item">
+                            <p>Today's Profit</p>
+                            <h4>৳ <span id="todayProfitVal">0</span></h4>
+                        </div>
+                    </div>
+                    <div class="timer-badge">
+                        <i class="fa-regular fa-clock"></i> Day resets in: <span id="resetTimer">00:00:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-card">
+                    <h3>Monthly Target Progress</h3>
+                    <div class="bar-progress-container">
+                        <div class="bar-header">
+                            <span>Overall Progress</span>
+                            <h2><span id="barSoldVal">0</span> <small>/ <span id="monthlyTargetTotalVal">300</span>
+                                    Products</small></h2>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="monthBar"></div>
+                        </div>
+                        <div class="info-panel">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <p>Target is based on calendar month. Monthly target will reset on 1st of next month.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="summary-row">
+                <div class="summary-card">
+                    <div class="sum-icon sum-rev"><i class="fa-solid fa-chart-simple"></i></div>
+                    <div class="sum-data">
+                        <p>Total Revenue</p>
+                        <h3>৳ <span id="sumRev">0</span></h3>
+                        <small>From Sales</small>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="sum-icon sum-cost"><i class="fa-solid fa-bag-shopping"></i></div>
+                    <div class="sum-data">
+                        <p>Total Cost</p>
+                        <h3>৳ <span id="sumCost">0</span></h3>
+                        <small>Product Cost</small>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="sum-icon sum-del"><i class="fa-solid fa-truck"></i></div>
+                    <div class="sum-data">
+                        <p>Total Delivery Charge</p>
+                        <h3>৳ <span id="sumDel">0</span></h3>
+                        <small>Delivery Charge</small>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="sum-icon sum-cost"><i class="fa-solid fa-bag-shopping"></i></div>
+                    <div class="sum-data">
+                        <p>Total Expense</p>
+                        <h3>৳ <span id="sumExpense">0</span></h3>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="grid-table-layout">
+                <section class="table-card">
+                    <div class="table-header">
+                        <h3>Recent Sales</h3>
+                        <a href="sales-list.html" class="btn-view-all">View All Sales <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date & Time</th>
+                                    <th>Product</th>
+                                    <th>Customer</th>
+                                    <th>Qty</th>
+                                    <th>Cost (৳)</th>
+                                    <th>Sell (৳)</th>
+                                    <th>Profit (৳)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="salesTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="table-card">
+                    <div class="table-header">
+                        <h3>Recent Expenses</h3>
+                        <a href="expenses.html" class="btn-view-all">View All Expenses <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="expTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Title</th>
+                                    <th>Amount (৳)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+
+            </section>
+            <footer class="site-footer">
+                <p>&copy; 2026 Designed & Developed by <strong>Rihad</strong></p>
+            </footer>
+        </main>
+    </div>
+
+
+
+    <div class="modal" id="addSaleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Sale</h2>
+                <i class="fa-solid fa-xmark close-modal" id="closeModalBtn"></i>
+            </div>
+            <form id="addSaleForm">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Product Name</label>
+                        <input type="text" id="inProduct" placeholder="e.g. T-shirt" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>Customer Name</label>
+                        <input type="text" id="inCustomer" placeholder="e.g. Rahim Uddin" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" id="inQty" value="1" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Charge (৳)</label>
+                        <input type="number" id="inDelivery" value="0" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cost Price (Unit ৳)</label>
+                        <input type="number" id="inCost" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Selling Price (Unit ৳)</label>
+                        <input type="number" id="inSell" min="0" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Add to Sales</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

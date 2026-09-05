@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+}
+
+.container {
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+h2 {
+
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 1.75rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #f8fafc;
+    transition: border-color 0.2s, background-color 0.2s;
+
+    &:focus {
+        border-color: #ffaa00;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+    }
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #ffaa00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 1rem;
+
+    &:hover {
+        background-color: #ffaa00;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.toggle-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #64748b;
+    font-size: 0.9rem;
+
+    span {
+        color: #ffaa00;
+        cursor: pointer;
+        font-weight: 700;
+        transition: color 0.2s;
+
+        &:hover {
+            color: #ea580c;
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-container {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 480px) {
+    .container {
+        padding: 2rem 1.5rem;
+    }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses - ProfitFlow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>ProfitFlow</span>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="add-sales.html" class="nav-link" id="addSaleBtn"><i class="fa-solid fa-cart-plus"></i> Add
+                        Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sales-list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Sales List</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Expenses</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="targets.html" class="nav-link"><i class="fa-solid fa-bullseye"></i> Targets</a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+            </ul>
+            <div class="sidebar-date">
+                <div class="date-box">
+                    <h4 id="displayDate">13 Jun 2026</h4>
+                    <p id="displayDay">Saturday, 05:53 PM</p>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <div class="stats-row">
+                <div class="card">
+                    <h4>Today's Expense</h4>
+                    <h2 id="todayExp">৳ 0</h2>
+                </div>
+                <div class="card">
+                    <h4>This Week</h4>
+                    <h2 id="weekExp">৳ 0</h2>
+                </div>
+                <div class="card">
+                    <h4>This Month</h4>
+                    <h2 id="monthExp">৳ 0</h2>
+                </div>
+            </div>
+
+            <div class="main-layout">
+                <div class="left-col">
+
+                    <div class="card">
+                        <h3>Recent Expenses</h3>
+                        <table id="expTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Title</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="right-col">
+                    <div class="card">
+                        <h3>Add Expense</h3>
+                        <form id="expForm">
+                            <select id="catSelect" required></select>
+                            <input type="text" id="expTitle" placeholder="Expense Name" required>
+                            <input type="number" id="expAmount" placeholder="Amount" required>
+                            <input type="date" id="expDate" required>
+                            <button type="submit">Save Expense</button>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <h3>Manage Categories</h3>
+                        <div class="cat-add">
+                            <input type="text" id="newCat" placeholder="New category name">
+                            <button onclick="addCat()">Add</button>
+                        </div>
+                        <ul id="catList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/assets/js/expenses.js"></script>
+</body>
+
+</html>

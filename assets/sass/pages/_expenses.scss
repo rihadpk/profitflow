@@ -1,0 +1,216 @@
+.expenses-wrapper {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*========================
+TOP CARDS
+========================*/
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 220px);
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.stats-row .card {
+    padding: 18px 20px;
+}
+
+.stats-row h4 {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.stats-row h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 22px;
+    align-items: start;
+}
+
+.left-col,
+.right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, .05);
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#expenseChart {
+    width: 100%;
+    max-width: 340px;
+    height: 340px !important;
+    margin: 0 auto;
+    display: block;
+}
+
+#expForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#expForm input,
+#expForm select {
+    height: 48px;
+    font-size: 15px;
+}
+
+#expForm button {
+    height: 48px;
+    font-size: 15px;
+}
+
+.cat-add {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.cat-add input {
+    flex: 1;
+    height: 44px;
+}
+
+.cat-add button {
+    height: 44px;
+    padding: 0 20px;
+}
+
+#catList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#catList li {
+    font-size: 13px;
+    padding: 7px 14px;
+}
+
+.left-col .card:last-child {
+
+    height: 430px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+#expTable {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+#expTable thead {
+
+    position: sticky;
+
+    top: 0;
+
+    background: #fff;
+
+    z-index: 5;
+
+}
+
+#expTable tbody {
+
+    display: block;
+
+    max-height: 300px;
+
+    overflow-y: auto;
+
+}
+
+#expTable thead,
+#expTable tbody tr {
+
+    display: table;
+
+    width: 100%;
+
+    table-layout: fixed;
+
+}
+
+#expTable tbody::-webkit-scrollbar {
+
+    width: 7px;
+
+}
+
+#expTable tbody::-webkit-scrollbar-thumb {
+
+    background: #cbd5e1;
+
+    border-radius: 20px;
+
+}
+
+#expTable button {
+
+    background: #ef4444;
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+@media(max-width:1200px) {
+
+    .main-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .stats-row {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
