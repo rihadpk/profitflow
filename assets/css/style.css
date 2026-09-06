@@ -589,8 +589,6 @@ body {
 /* টেবিল গ্রিড লেআউট */
 .grid-table-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* সমান দুই ভাগে ভাগ করা */
   gap: 20px;
   margin-top: 20px;
 }
