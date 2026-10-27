@@ -33,7 +33,9 @@
                 <li class="nav-item active">
                     <a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Expenses</a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="product-list.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Product List</a>
+                </li>
                 <li class="nav-item">
                     <a href="targets.html" class="nav-link"><i class="fa-solid fa-bullseye"></i> Targets</a>
                 </li>
@@ -52,67 +54,255 @@
             </div>
         </aside>
 
-        <div class="main-content">
-            <div class="stats-row">
-                <div class="card">
-                    <h4>Today's Expense</h4>
-                    <h2 id="todayExp">৳ 0</h2>
+        <main class="main">
+            <header class="page-header">
+                <div>
+                    <h1>Expenses & Stock Records</h1>
+                    <p class="subtitle">
+                        Manage daily expenses, stock and shipment costs easily.
+                    </p>
                 </div>
-                <div class="card">
-                    <h4>This Week</h4>
-                    <h2 id="weekExp">৳ 0</h2>
-                </div>
-                <div class="card">
-                    <h4>This Month</h4>
-                    <h2 id="monthExp">৳ 0</h2>
-                </div>
-            </div>
 
-            <div class="main-layout">
-                <div class="left-col">
+                <div class="filter-area">
+                    <label for="dateFilter">Show records</label>
+                    <select id="dateFilter">
+                        <option value="month">This Month</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="all">All Records</option>
+                        <option value="custom">Custom Date Range</option>
+                    </select>
 
-                    <div class="card">
-                        <h3>Recent Expenses</h3>
-                        <table id="expTable">
+                    <div id="customRange" class="custom-range hidden">
+                        <input type="date" id="startDate">
+                        <input type="date" id="endDate">
+                        <button id="applyRange" class="btn">Apply</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- SUMMARY -->
+            <section class="summary-grid">
+                <article class="summary-card">
+                    <div class="summary-icon orange">↗</div>
+                    <div>
+                        <p>Ad Cost</p>
+                        <h2 id="adTotal">৳ 0</h2>
+                        <small>Selected period</small>
+                    </div>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon green">◇</div>
+                    <div>
+                        <p>New Stock Cost</p>
+                        <h2 id="stockTotal">৳ 0</h2>
+                        <small>KG × Rate per KG</small>
+                    </div>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon blue">♧</div>
+                    <div>
+                        <p>Shipping Cost</p>
+                        <h2 id="shippingTotal">৳ 0</h2>
+                        <small>Recorded shipping</small>
+                    </div>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon purple">▤</div>
+                    <div>
+                        <p>Other Expenses</p>
+                        <h2 id="otherTotal">৳ 0</h2>
+                        <small>Salary, packaging, etc.</small>
+                    </div>
+                </article>
+
+                <article class="summary-card grand-card">
+                    <p>Total Cost</p>
+                    <h2 id="grandTotal">৳ 0</h2>
+                    <small>All selected costs</small>
+                </article>
+            </section>
+
+            <div class="content-grid">
+
+                <!-- RECORDS TABLE -->
+                <section class="panel records-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Stock & Expense Records</h2>
+                            <p>Records are sorted by date.</p>
+                        </div>
+                        <span id="recordCount" class="count-badge">0 records</span>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Category</th>
-                                    <th>Title</th>
-                                    <th>Amount</th>
+                                    <th>Type / Product</th>
+                                    <th>Qty</th>
+                                    <th>Total KG</th>
+                                    <th>Rate / KG</th>
+                                    <th>Stock / Expense</th>
+                                    <th>Shipping</th>
+                                    <th>Total Cost</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="expBody"></tbody>
+                            <tbody id="recordsBody">
+                                <tr>
+                                    <td colspan="9" class="empty">
+                                        No records yet. Add your first entry.
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
-                </div>
 
-                <div class="right-col">
-                    <div class="card">
-                        <h3>Add Expense</h3>
-                        <form id="expForm">
-                            <select id="catSelect" required></select>
-                            <input type="text" id="expTitle" placeholder="Expense Name" required>
-                            <input type="number" id="expAmount" placeholder="Amount" required>
-                            <input type="date" id="expDate" required>
-                            <button type="submit">Save Expense</button>
-                        </form>
+                    <div class="table-footer">
+                        <span id="rangeCaption">Showing this month's records</span>
+                        <button id="resetFilter" class="text-button">
+                            Reset Filter
+                        </button>
                     </div>
-                    <div class="card">
-                        <h3>Manage Categories</h3>
-                        <div class="cat-add">
-                            <input type="text" id="newCat" placeholder="New category name">
-                            <button onclick="addCat()">Add</button>
+                </section>
+
+                <!-- RIGHT SIDE FORMS -->
+                <aside class="forms-column">
+
+                    <!-- ADD EXPENSE -->
+                    <section class="panel form-panel">
+                        <div class="form-heading">
+                            <div class="form-icon orange">＋</div>
+                            <div>
+                                <h2>Add Expense</h2>
+                                <p>Ads and other daily costs</p>
+                            </div>
                         </div>
-                        <ul id="catList"></ul>
-                    </div>
-                </div>
+
+                        <form id="expenseForm">
+                            <input type="hidden" id="expenseEditId">
+
+                            <label for="expenseDate">Date</label>
+                            <input type="date" id="expenseDate" required>
+
+                            <label for="expenseCategory">Category</label>
+                            <select id="expenseCategory" required>
+                                <option value="Ads">Ads</option>
+                                <option value="Salary">Salary</option>
+                                <option value="Packaging">Packaging</option>
+                                <option value="Courier Cost">Courier Cost</option>
+                                <option value="Other">Other</option>
+                            </select>
+
+                            <label for="expenseName">Expense Name</label>
+                            <input type="text" id="expenseName" placeholder="e.g. Facebook Ads Campaign" maxlength="100"
+                                required>
+
+                            <label for="expenseAmount">Amount (৳)</label>
+                            <input type="number" id="expenseAmount" min="0.01" step="0.01" placeholder="Enter amount"
+                                required>
+
+                            <div class="form-actions">
+                                <button type="submit" id="saveExpense" class="btn primary">
+                                    Save Expense
+                                </button>
+                                <button type="button" id="cancelExpense" class="btn secondary hidden">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- ADD STOCK -->
+                    <section class="panel form-panel">
+                        <div class="form-heading">
+                            <div class="form-icon blue">＋</div>
+                            <div>
+                                <h2>Add Stock & Shipment</h2>
+                                <p>Calculate stock cost by KG</p>
+                            </div>
+                        </div>
+
+                        <form id="stockForm">
+                            <input type="hidden" id="stockEditId">
+
+                            <label for="stockDate">Stock / Shipment Date</label>
+                            <input type="date" id="stockDate" required>
+
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" placeholder="Mirror Photo Frame Lamp" maxlength="100"
+                                required>
+
+                            <div class="two-columns">
+                                <div>
+                                    <label for="quantity">Quantity (Pcs)</label>
+                                    <input type="number" id="quantity" min="0" step="1" placeholder="200" required>
+                                </div>
+                                <div>
+                                    <label for="totalKg">Total KG</label>
+                                    <input type="number" id="totalKg" min="0.01" step="0.01" placeholder="20" required>
+                                </div>
+                            </div>
+
+                            <div class="two-columns">
+                                <div>
+                                    <label for="shipmentType">Shipment Type</label>
+                                    <select id="shipmentType">
+                                        <option value="Sea">Sea</option>
+                                        <option value="Air">Air</option>
+                                        <option value="Courier">Courier</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="ratePerKg">Rate per KG (৳)</label>
+                                    <input type="number" id="ratePerKg" min="0" step="0.01" placeholder="750" required>
+                                </div>
+                            </div>
+
+                            <label for="shippingCost">Shipping Cost (৳)</label>
+                            <input type="number" id="shippingCost" min="0" step="0.01" placeholder="Shipping cost"
+                                required>
+
+                            <div class="calculation-box">
+                                <div>
+                                    <span>Stock Cost</span>
+                                    <strong id="liveStockCost">৳ 0</strong>
+                                </div>
+                                <div>
+                                    <span>Total Cost</span>
+                                    <strong id="liveTotalCost">৳ 0</strong>
+                                </div>
+                            </div>
+
+                            <p class="helper">
+                                Stock Cost = Total KG × Rate per KG.
+                                Allocate shipping cost between products if a shipment
+                                contains multiple products, to avoid double counting.
+                            </p>
+
+                            <div class="form-actions">
+                                <button type="submit" id="saveStock" class="btn primary">
+                                    Save Stock Entry
+                                </button>
+                                <button type="button" id="cancelStock" class="btn secondary hidden">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </aside>
             </div>
-        </div>
+        </main>
+
 
     </div>
 
+    <script src="/assets/js/expenses.js"></script>
     <script src="/assets/js/expenses.js"></script>
 </body>
 

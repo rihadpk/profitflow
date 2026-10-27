@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Pro Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>ProfitFlow</span>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="add-sales.html" class="nav-link" id="addSaleBtn"><i class="fa-solid fa-cart-plus"></i> Add
+                        Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sales-list.html" class="nav-link"><i class="fa-solid fa-list-check"></i> Sales List</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="expenses.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Expenses</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="product-list.html" class="nav-link"><i class="fa-solid fa-receipt"></i> Product List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="targets.html" class="nav-link"><i class="fa-solid fa-bullseye"></i> Targets</a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+                </li>
+            </ul>
+            <div class="sidebar-date">
+                <div class="date-box">
+                    <h4 id="displayDate">13 Jun 2026</h4>
+                    <p id="displayDay">Saturday, 05:53 PM</p>
+                </div>
+            </div>
+        </aside>
+
+
+        <main class="main">
+            <header class="topbar">
+
+                <div>
+                    <h1>Product List</h1>
+                    <p>Dashboard / Product List</p>
+                </div>
+                <button class="btn gold" id="addProductBtn">+ Add New Product</button>
+
+            </header>
+            <section class="content">
+
+                <div class="stats">
+                    <div class="stat">
+                        <span>Total Products</span>
+                        <strong id="totalProducts">0</strong>
+                    </div>
+                    <div class="stat">
+                        <span>In Stock</span>
+                        <strong class="green" id="inStock">0</strong>
+                    </div>
+                    <div class="stat">
+                        <span>Out of Stock</span>
+                        <strong class="red" id="outStock">0</strong>
+                    </div>
+                </div>
+
+                <section class="panel">
+                    <div class="products-toolbar">
+
+                        <div class="products-toolbar-left">
+                            <h3>All Products</h3>
+
+                            <input type="text" class="products-search" id="searchInput"
+                                placeholder="Search product name or SKU...">
+                        </div>
+
+                        <div class="products-toolbar-right">
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="in-stock">In Stock</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                            </select>
+
+                            <button id="exportCsv">Export CSV</button>
+                        </div>
+
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product</th>
+                                    <th>SKU</th>
+                                    <th>China Price (৳)</th>
+                                    <th>Shipping / Pc (৳)</th>
+                                    <th>Weight / Pc (gm)</th>
+                                    <th>Selling Price (৳)</th>
+                                    <th>Stock Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTable"></tbody>
+                        </table>
+                        <div id="emptyState" class="empty" hidden>
+                            No products found.
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <span id="showing">Showing 0 products</span>
+                        <div id="pages" class="pages"></div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- Product Add/Edit Modal -->
+    <div class="modal" id="productModal">
+        <form class="modal-card" id="productForm">
+            <div class="modal-head">
+                <h2 id="modalTitle">Add New Product</h2>
+                <button type="button" class="close" id="closeModal">×</button>
+            </div>
+
+            <input type="hidden" id="editId">
+
+            <label>Product Name
+                <input id="name" required placeholder="Magic Mirror Photo Frame">
+            </label>
+
+            <label>SKU
+                <input id="sku" required placeholder="MM-LV-001">
+            </label>
+
+            <label>Product Image
+                <input id="image" type="file" accept="image/*">
+            </label>
+
+            <div class="form-grid">
+                <label>China Purchase Price (৳)
+                    <input id="china" type="number" min="0" step="0.01" required>
+                </label>
+
+                <label>Shipping Cost / Pc (৳)
+                    <input id="shipping" type="number" min="0" step="0.01" required>
+                </label>
+
+                <label>Weight / Pc (gm)
+                    <input id="weight" type="number" min="0" step="0.01" required>
+                </label>
+
+                <label>Selling Price (৳)
+                    <input id="selling" type="number" min="0" step="0.01" required>
+                </label>
+            </div>
+
+            <label>Stock Availability
+                <select id="stock">
+                    <option value="in">In Stock</option>
+                    <option value="out">Out of Stock</option>
+                </select>
+            </label>
+
+            <div class="modal-actions">
+                <button type="button" class="btn" id="cancelBtn">Cancel</button>
+                <button type="submit" class="btn gold">Save Product</button>
+            </div>
+        </form>
+
+    </div>
+
+
+
+    <div class="modal" id="addSaleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Sale</h2>
+                <i class="fa-solid fa-xmark close-modal" id="closeModalBtn"></i>
+            </div>
+            <form id="addSaleForm">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Product Name</label>
+                        <input type="text" id="inProduct" placeholder="e.g. T-shirt" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>Customer Name</label>
+                        <input type="text" id="inCustomer" placeholder="e.g. Rahim Uddin" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" id="inQty" value="1" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Charge (৳)</label>
+                        <input type="number" id="inDelivery" value="0" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cost Price (Unit ৳)</label>
+                        <input type="number" id="inCost" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Selling Price (Unit ৳)</label>
+                        <input type="number" id="inSell" min="0" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Add to Sales</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/assets/js/product-list.js"></script>
+</body>
+
+
+
+</html>
